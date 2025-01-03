@@ -1,0 +1,15 @@
+ /* Reklamı geç butonunu stilize et */
+ .skip-button {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    padding: 10px 20px;
+    background-color: rgba(0, 0, 0, 0.6);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    z-index: 9999;
+    display: none;
+}

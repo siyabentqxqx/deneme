@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <title>Video.js Preroll Reklam</title>
+    <!-- Video.js Stilleri -->
+    <link href="https://vjs.zencdn.net/8.16.1/video-js.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://unpkg.com/videojs-contrib-ads/dist/videojs.ads.css" />
+    <link rel="stylesheet" href="idman.css">
+</head>
+<body>
+    <video
+        id="videoPlayer"
+        class="video-js"
+        width="1080"
+        height="720"
+        data-setup='{"autoplay": true, "controls": true}'>
+        <source src="videolar/video1.mp4" type="video/mp4" />
+    </video>
+
+    <!-- Google IMA SDK -->
+    <script src="https://imasdk.googleapis.com/js/sdkloader/ima3.js"></script>
+    <!-- Video.js -->
+    <script src="https://vjs.zencdn.net/8.16.1/video.min.js"></script>
+    <!-- Video.js Reklam Eklentileri -->
+    <script src="https://unpkg.com/videojs-contrib-ads/dist/videojs.ads.min.js"></script>
+    <script src="https://unpkg.com/videojs-ima/dist/videojs.ima.js"></script>
+    <!-- Özel JavaScript -->
+    <script src="idman.js"></script>
+    <script src="video-player.js"></script>
+
+    <script>
+        var player;
+
+        // Oynatıcı zaten varsa yeniden başlatma:
+        if (videojs.getPlayer('videoPlayer')) {
+            player = videojs.getPlayer('videoPlayer');
+        } else {
+            player = videojs('videoPlayer');
+        }
+
+        // Reklam Ekleme
+        player.ima({
+            adTagUrl: 'http://127.0.0.1:8080/reklam1.xml', // Doğru VAST URL'si
+        });
+
+        // Olay Dinleyiciler
+        player.on('readyforpreroll', function () {
+            console.log('Preroll oynatılıyor...');
+            player.play();
+        });
+
+        player.on('adsready', function () {
+            console.log('Reklam hazır.');
+        });
+
+        player.on('adserror', function (event) {
+            console.error('Reklamda hata oluştu:', event);
+        });
+
+        player.on('adskip', function () {
+            console.log('Reklam atlandı.');
+        });
+    </script>
+</body>
+</html>
