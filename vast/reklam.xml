@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<VAST version="4.1">
+    <Ad id="12345">
+        <InLine>
+            <AdSystem>Video.js Sample Ad Server</AdSystem>
+            <AdTitle>Sample Pre-Roll Ad</AdTitle>
+            <Impression xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="Inline" id="impression_url">https://your-impression-url.com</Impression>
+
+            <Creatives>
+                <Creative sequence="1" type="video/mp4">
+                    <Linear>
+                        <Duration>00:00:15</Duration> <!-- Reklamın süresi -->
+                        <MediaFiles>
+                            <MediaFile type="video/mp4" delivery="progressive" width="640" height="360">
+                                https://siyabentqxqx.github.io/deneme/vast/reklam.mp4
+                            </MediaFile>
+                        </MediaFiles>
+
+                        <VideoClicks>
+                            <ClickThrough><![CDATA[http://www.your-ad-landing-page.com]]></ClickThrough> <!-- Reklamın üzerine tıklanınca gidilecek sayfa -->
+                        </VideoClicks>
+                    </Linear>
+                </Creative>
+            </Creatives>
+        </InLine>
+    </Ad>
+</VAST>
