@@ -39,10 +39,10 @@
             player = videojs('videoPlayer');
         }
 
-        // Reklam Ekleme: VAST URL'sini doğru girdiğinizden emin olun
+        // Reklam Ekleme: VAST URL'si (GitHub Pages üzerinden düzgün CORS sorunu olmayan bir platform kullanın)
         player.ima({
-            adTagUrl: 'https://siyabentqxqx.github.io/deneme/vast/reklam.xml', // GitHub Pages'deki doğru VAST URL'si
-            skipOffset: '00:00:05' // Reklam atlama butonunun 5. saniyede görünmesini sağlar
+            adTagUrl: 'https://siyabentqxqx.github.io/deneme/vast/reklam.xml',  // VAST dosyanızın doğru URL'si
+            skipOffset: '00:00:05'  // 5 saniye sonra "Reklamı Geç" butonunun görünmesini sağlar
         });
 
         // Olay Dinleyiciler
