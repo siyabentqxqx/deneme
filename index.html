@@ -39,28 +39,42 @@
             player = videojs('videoPlayer');
         }
 
-        // Reklam Ekleme: VAST URL'si (GitHub Pages üzerinden düzgün CORS sorunu olmayan bir platform kullanın)
+        // Reklam Ekleme: VAST URL'si
         player.ima({
             adTagUrl: 'https://siyabentqxqx.github.io/deneme/vast/reklam.xml',  // VAST dosyanızın doğru URL'si
-            skipOffset: '00:00:05'  // 5 saniye sonra "Reklamı Geç" butonunun görünmesini sağlar
+            skipOffset: '00:00:05'  // Reklamın 5 saniye sonra atlanabilir olmasını sağlamak
         });
 
-        // Olay Dinleyiciler
-        player.on('readyforpreroll', function () {
-            console.log('Preroll oynatılıyor...');
-            player.play(); // Reklam başladıktan sonra video oynamaya başlar
+        // Reklam hata durumları ve atlama
+        player.on('adserror', function(event) {
+            console.error('Reklam hatası:', event);
         });
 
-        player.on('adsready', function () {
+        player.on('adskip', function() {
+            console.log('Reklam atlandı.');
+        });
+
+        // Reklamı Tıklama Olayı
+        player.on('adclick', function() {
+            console.log('Reklam tıklandı!');
+            window.open(player.ima().getClickThrough(), "_blank");  // Clickthrough bağlantısını yeni sekmede aç
+        });
+
+        // Reklamın sonlanması ile video oynatmaya devam et
+        player.on('adended', function() {
+            console.log('Reklam bitti, video devam ediyor.');
+            player.play();  // Reklam bitince video devam eder
+        });
+
+        // Reklam hazır olduğunda
+        player.on('adsready', function() {
             console.log('Reklam hazır.');
         });
 
-        player.on('adserror', function (event) {
-            console.error('Reklamda hata oluştu:', event);
-        });
-
-        player.on('adskip', function () {
-            console.log('Reklam atlandı.');
+        // Reklamın başlama zamanında
+        player.on('readyforpreroll', function() {
+            console.log('Preroll oynatılıyor...');
+            player.play(); // Reklam başladıktan sonra video oynamaya başlar
         });
     </script>
 </body>
