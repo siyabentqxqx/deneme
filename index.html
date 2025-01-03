@@ -32,22 +32,22 @@
     <script>
         var player;
 
-        // Oynatıcı zaten varsa yeniden başlatma:
+        // Oynatıcıyı başlatma
         if (videojs.getPlayer('videoPlayer')) {
             player = videojs.getPlayer('videoPlayer');
         } else {
             player = videojs('videoPlayer');
         }
 
-        // Reklam Ekleme
+        // Reklam Ekleme: VAST URL'sini doğru girdiğinizden emin olun
         player.ima({
-            adTagUrl: 'http://127.0.0.1:8080/reklam1.xml', // Doğru VAST URL'si
+            adTagUrl: 'https://siyabentqxqx.github.io/deneme/vast/reklam.xml', // GitHub Pages'deki doğru VAST URL'si
         });
 
         // Olay Dinleyiciler
         player.on('readyforpreroll', function () {
             console.log('Preroll oynatılıyor...');
-            player.play();
+            player.play(); // Reklam başladıktan sonra video oynamaya başlar
         });
 
         player.on('adsready', function () {
